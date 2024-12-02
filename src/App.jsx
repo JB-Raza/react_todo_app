@@ -75,7 +75,7 @@ export default App
 // working on filters   ??
 
 
-// Filters
+// Filters like completed, pending and none
 
 {/* <div className='dark:hover:text-white'>
               <input className='cursor-pointer' type="radio" name='taskStatus' id='completedTask' />
