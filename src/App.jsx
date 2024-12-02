@@ -71,7 +71,7 @@ export default App
 // update card -------
 // store data in localStorage ------
 
-// dark theme
+// dark theme -------
 // working on filters   ??
 
 
