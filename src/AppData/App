@@ -1,0 +1,70 @@
+import { useEffect, useState } from 'react'
+import './App.css'
+import Card from './components/Card'
+import Header from './components/Header'
+
+function App() {
+
+  const [cards, setCards] = useState([])
+
+  const addCard = () => {
+    setCards([...cards, {id: Date.now(), checkState: false, description: ""}])
+    console.log(cards)
+  }
+
+  const cardInfo = (checkState, description) => {
+    setCards([...cards, {checkState, description}]) 
+    console.log(cards)
+  }
+
+  const delCard = (id) => {
+    setCards(prevCards => prevCards.filter((card) => card.id !== id))
+  }
+
+  return (
+    <div className='md:flex'>
+      <Header />
+      <div className="w-full m-5">
+        {/* filters and Add button*/}
+        <div className='flex filters'>
+          <div>
+            <input className='cursor-pointer' type="radio" name='taskStatus' id='completedTask' />
+            <label htmlFor="completedTask" className='cursor-pointer my-auto mx-1'>Completed</label>
+          </div>
+          <div className='ms-4'>
+            <input className='cursor-pointer' type="radio" name='taskStatus' id='pendingTask' />
+            <label htmlFor="pendingTask" className='cursor-pointer my-auto mx-1'>Pending</label>
+          </div>
+          <div className='ms-4'>
+            <input className='cursor-pointer' type="radio" name='taskStatus' defaultChecked={true} id='none' />
+            <label htmlFor="none" className='cursor-pointer my-auto mx-1'>None</label>
+          </div>
+          <button
+            className='block bg-purple-600 hover:bg-purple-800 hover:scale-110 transition-all duration-150 h-9 px-6 rounded-full text-white ms-auto me-3'
+            onClick={addCard}
+          >
+            ADD
+          </button>
+        </div>
+        <hr className='my-3 font-bold' />
+
+        {/* all cards */}
+        {cards.map((card) => (
+          <div className='flex p-0 bg-purple-600 rounded-md my-2' key={card.id}>
+            <Card 
+              cardInfo={cardInfo}
+            />
+            {/* del card btn */}
+            <button
+              onClick={() => delCard(card.id)}
+              className='outline-none px-2 py-1 text-white hover:bg-purple-700 hover:text-lg transition-all duration-150 rounded-md'>Delete</button>
+          </div>
+        ))}
+
+      </div>
+    </div>
+
+  )
+}
+
+export default App

@@ -1,0 +1,43 @@
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+
+function Card({cardInfo}) {
+  const [isChecked, setIsChecked] = useState(false)
+  const [cardDescription, setCardDescription] = useState("")
+
+  cardInfo = (checkState, description) => {
+    checkState = isChecked
+    description = cardDescription
+    console.log(checkState, description)
+  }
+  useEffect(() => {
+    cardInfo(isChecked, cardDescription)
+  }, [isChecked, cardDescription])
+
+
+
+  // const handleCardChange = (e) => {
+    // setCard({...card, checkState: isChecked, description: e.target.value})
+  // }
+
+  return (
+    <div className={`${isChecked?"bg-gray-500":"bg-purple-700"} flex w-full text-white rounded-md`}>
+      <input
+        type="text"
+        placeholder='Add Todo'
+        value={cardDescription}
+        onChange={(e) => setCardDescription(e.target.value)}
+        className={`${isChecked?"line-through":""} focus:text-lg bg-transparent transition-all rounded-md duration-200 px-2 py-3 w-full outline-none `}
+      />
+      <input type="checkbox" className='cursor-pointer outline-none scale-150 me-3'
+        onChange={() => setIsChecked(prev => !prev)}
+        checked={isChecked}
+      />
+
+    </div>
+  )
+}
+
+export default Card
+
+    // cardInfo(card.id, card.checkState, card.description)

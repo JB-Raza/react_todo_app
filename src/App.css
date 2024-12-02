@@ -1,0 +1,22 @@
+
+/* Header.jsx */
+.nav-item-hover {
+    @apply
+    dark:hover:bg-slate-900
+    dark:hover:text-white
+    hover:cursor-pointer 
+    hover:font-semibold
+    hover:text-gray-500
+    hover:bg-white
+    text-gray-300
+    transition-all
+    duration-200
+    ms-auto
+    /* md:p-3 */
+    md:rounded-r-md
+
+    sm:mx-2
+    md:m-0
+    sm:p-3
+    sm:rounded-full
+  }
